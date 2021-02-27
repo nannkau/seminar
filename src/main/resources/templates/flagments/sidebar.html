@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="sidebar">
+    <div class="wrapper-pro">
+        <div>
+            <div class="header-top-area">
+                <div class="header-top">
+                    <div class="container-fluid">
+                        <div class="row" >
+                            <div class="col-lg-8 col-md-1 col-sm-1 col-xs-3">
+                                <div class="header-top-menu tabl-d-n">
+                                    <ul class="nav navbar-nav mai-top-nav">
+                                        <li class="nav-item"><a th:href="@{/}" class="nav-link">Home</a>
+                                        </li>
+                                        <li class="nav-item" sec:authorize="hasAuthority('admin')"><a th:href="@{/user/index.html}" class="nav-link">User</a>
+                                        </li>
+                                        <li class="nav-item" sec:authorize="hasAuthority('admin')"><a th:href="@{/role/index.html}" class="nav-link">Role</a>
+                                        <li class="nav-item" sec:authorize="hasAuthority('admin')"><a th:href="@{ /role-of-task/index.html}" class="nav-link">Role Of Task</a>
+                                        </li>
+                                        </li>
+                                        <li class="nav-item" sec:authorize="hasAuthority('admin')"><a th:href="@{/task-all/index.html}" class="nav-link">Task</a>
+                                        </li>
+                                        <li class="nav-item" ><a th:href="@{/my-task/my/index.html}" class="nav-link">My Task</a>
+                                        </li>
+                                        <li class="nav-item" ><a th:href="@{/my-task/public/index.html}" class="nav-link">Public Task</a>
+                                        </li>
+                                        <li class="nav-item" ><a th:href="@{/my-task/join/index.html}" class="nav-link">Working Task</a>
+                                        </li>
+                                        <li class="nav-item" ><a th:href="@{/my-task/visit/index.html}" class="nav-link">Visit Task</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6" sec:authorize="isAuthenticated()">
+                                <div class="header-right-info">
+                                    <ul class="nav navbar-nav mai-top-nav header-right-menu">
+
+                                        <li class="nav-item">
+                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                <span class="glyphicon">&#xe008;</span>
+                                                <span class="admin-name"><span sec:authentication="name"></span></span>
+                                                <span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                            </a>
+                                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
+                                                <li><a href="#"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>My Account</a>
+                                                <li><a th:href="@{/logout}" class="nav-link"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Log Out</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
