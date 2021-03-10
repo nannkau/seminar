@@ -43,13 +43,13 @@ public class RoleController {
         return "redirect:/role/index.html";
     }
     @RequestMapping(value = "/role/edit/{id}")
-    public String edit(Model model, @PathVariable("id") Integer id){
+    public String edit(Model model, @PathVariable("id") String id){
         Role role=roleService.findById(id);
         model.addAttribute("role",role);
         return "role/edit";
     }
     @RequestMapping(value = "/role/delete/{id}")
-    public String delete(Model model,@PathVariable("id") Integer id){
+    public String delete(Model model,@PathVariable("id") String id){
         roleService.deleteById(id);
         return "redirect:/role/index.html";
     }

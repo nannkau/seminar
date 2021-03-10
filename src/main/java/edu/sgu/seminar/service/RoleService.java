@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface RoleService {
     List<Role> findAll();
-    Role findById(Integer id);
+    Role findById(String id);
     Role save(Role role);
     void delete(Role role);
-    void deleteById(Integer id);
+    void deleteById(String id);
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/flagments/header::header">
+        <title>Home</title>
+    </th:block>
+</head>
+<body class="materialdesign">
+<div class="login-form-area mg-t-30 mg-b-15">
+    <div class="container-fluid">
+        <form action="#" th:action="@{/login}"  method="post" id="adminpro-register-form" class="adminpro-form">
+            <div class="login-bg">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12">
+                        <div class="login-title">
+                            <h1>Login Form</h1>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${param.error}">
+                    <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+                </div>
+
+                <div th:if="${param.logout}">
+                    <p class="text-warning">You have been logged out.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="login-input-head">
+                            <p>Email Address</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="login-input-area">
+                            <input type="email" name="email"/>
+                            <i class="fa fa-envelope login-user" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="login-input-head">
+                            <p>Password</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="login-input-area">
+                            <input type="password" name="password" />
+                            <i class="fa fa-lock login-user"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-6">
+                        <div class="login-button-pro">
+                            <button type="submit" class="login-button login-button-lg">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<th:block th:replace="/flagments/footer::footer"></th:block>
+</body>
+</html>
