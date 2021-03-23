@@ -36,6 +36,13 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6 align-self-end" sec:authorize="isAnonymous()">
+                                <div class="header-right-info">
+                                    <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                        <li class="nav-item" ><a th:href="@{/login}" class="nav-link"> <span class="fa fa-sign-in"></span>Login now</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6" sec:authorize="isAuthenticated()">
                                 <div class="header-right-info">
                                     <ul class="nav navbar-nav mai-top-nav header-right-menu">

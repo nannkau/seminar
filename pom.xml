@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.sgu</groupId>
-    <artifactId>seminar</artifactId>
+    <artifactId>nguyenphanhoainam-3117410155</artifactId>
     <version>1.0</version>
-    <name>seminar</name>
-    <description>Demo project for Spring Boot</description>
+    <name>nguyenphanhoainam-3117410155</name>
+    <description></description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
