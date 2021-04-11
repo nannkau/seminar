@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/flagments/header::header">
+        <title>Invoice</title>
+    </th:block>
+</head>
+<body class="materialdesign">
+<th:block th:replace="/flagments/sidebar::sidebar"></th:block>
+
+<div class="admin-dashone-data-table-area">
+    <div class="data-table-area mg-b-15">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sparkline13-list shadow-reset">
+                        <div class="sparkline13-hd">
+                            <div class="main-sparkline13-hd">
+                                <h1>Order<span class="table-project-n"></span> Table</h1>
+                            </div>
+                        </div>
+                        <form action="#" th:action="@{/invoice/add.html}" th:object="${invoiceDTO}" method="post">
+                            <div class="form-group-inner">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">Address</label>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="input-mark-inner mg-b-22">
+                                            <input type="text" id="name" th:field="*{address}" class="form-control" name="name" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-inner">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">Phone</label>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="input-mark-inner mg-b-22">
+                                            <input type="text" id="address" th:field="*{phoneNumber}" class="form-control" name="address" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group-inner">
+                                <div class="row justify-content-md-center">
+                                    <div class=" col col-lg-9">
+                                        <div class="login-horizental cancel-wp pull-left">
+                                            <button class="btn btn-sm btn-primary login-submit-cs" type="submit">Buy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-inner">
+                                <div class="sparkline13-graph">
+                                    <div class="datatable-dashv1-list custom-datatable-overright">
+                                        <div id="toolbar">
+                                            <select class="form-control">
+                                                <option value="">Export Basic</option>
+                                                <option value="all">Export All</option>
+                                                <option value="selected">Export Selected</option>
+                                            </select>
+                                        </div>
+                                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                            <thead>
+                                            <tr>
+                                                <th data-field="checked">Click</th>
+                                                <th data-field="Name">Name</th>
+                                                <th data-field="Price" >Price</th>
+                                                <th data-field="Gender" >Gender</th>
+                                                <th data-field="Season" >Season</th>
+                                                <th data-field="Amount">Amount</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody >
+                                            <tr th:each=" product,count :${products}">
+
+                                                <td>  <input type="checkbox"
+                                                             th:field="*{list[__${count.index}__].selected}">
+                                                    <input type="hidden"
+                                                           th:field="*{list[__${count.index}__].productId}">
+
+                                                </td>
+                                                <td th:text="${product.getProductDisplayName()}">Name</td>
+                                                <td ><p th:text="${product.getPrice()+' $'}"></p></td>
+                                                <td th:text="${product.getGender()}">size</td>
+                                                <td th:text="${product.getSeason()}">Supplier</td>
+                                                <td> <input type="text" id="amountTotal" th:field="*{list[__${count.index}__].amount}" class="form-control" name="email" /></td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+<th:block th:replace="/flagments/footer::footer"></th:block>
+</body>
+</html>
