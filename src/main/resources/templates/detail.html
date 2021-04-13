@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="/flagments/header::header">
+    <title>Home</title>
+  </th:block>
+</head>
+<body class="materialdesign">
+
+<th:block th:replace="/flagments/sidebar::sidebar"></th:block>
+<div class="container-fluid">
+  <div class="row justify-content-md-center ">
+     <div class="col col-lg-5">
+       <div class="user-profile-img">
+         <img src="img/notification/5.jpg" alt="">
+       </div>
+       <div class="row justify-content-md-center">
+         <div class="col col-lg-12">
+           <div class="user-profile-wrap shadow-reset">
+             <div class="row justify-content-md-center">
+               <div class="col col-lg-6">
+                 <div class="user-profile-img">
+                   <div th:if="${result.getImage() != null}">
+                     <img class="info" th:attr="src=@{${result.getImage()}}"/>
+                   </div>
+                 </div>
+               </div>
+               <div class="col col-lg-10">
+                 <div class="user-profile-social-list">
+                   <table class="table small m-b-xs">
+                     <tbody>
+                     <tr>
+                       <td>
+                         <strong>Full Name</strong>
+                       </td>
+                       <td th:text="${invoice.getUser().getFullName()}">
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>
+                         <strong>Address</strong>
+                       </td>
+                       <td th:text="${invoice.address}">
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>
+                         <strong>Phone</strong>
+                       </td>
+                       <td th:text="${invoice.getPhoneNumber()}">
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>
+                         <strong>Price</strong>
+                       </td>
+                       <td th:text="${invoice.getPriceTotal()+ ' $'}">
+                       </td>
+                     </tr>
+                     </tbody>
+                   </table>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+  </div>
+</div>
+<th:block th:replace="/flagments/footer::footer"></th:block>
+</body>
+</html>

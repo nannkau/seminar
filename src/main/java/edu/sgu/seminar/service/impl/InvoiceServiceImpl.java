@@ -3,6 +3,7 @@ package edu.sgu.seminar.service.impl;
 import edu.sgu.seminar.dto.InvoiceDTO;
 import edu.sgu.seminar.dto.Item;
 import edu.sgu.seminar.entity.*;
+import edu.sgu.seminar.repository.InvoiceDetailRepository;
 import edu.sgu.seminar.repository.InvoiceRepository;
 import edu.sgu.seminar.repository.ProductRepository;
 import edu.sgu.seminar.repository.UserRepository;
@@ -22,6 +23,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     private UserRepository userRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private InvoiceDetailRepository invoiceDetailRepository;
     @Override
     public Invoice addInvoice(InvoiceDTO invoiceDTO, String email) {
         User user=userRepository.findByEmail(email);
@@ -39,11 +42,21 @@ public class InvoiceServiceImpl implements InvoiceService {
                 price=price+(product.getPrice()*item.getAmount());
                 invoiceDetail.setProduct(product);
                 invoiceDetail.setTotal(item.getAmount());
-                invoiceDetails.add(invoiceDetail);
+                invoiceDetails.add(invoiceDetailRepository.save(invoiceDetail));
             }
         }
         invoice.setPriceTotal(price);
         invoice.setInvoiceDetails(invoiceDetails);
         return invoiceRepository.save(invoice);
+    }
+
+    @Override
+    public List<Invoice> getAll() {
+        return invoiceRepository.findAll();
+    }
+
+    @Override
+    public Invoice findById(String id) {
+        return invoiceRepository.findById(id).get();
     }
 }
