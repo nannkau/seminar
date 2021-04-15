@@ -1,5 +1,6 @@
 package edu.sgu.seminar.controller;
 
+import edu.sgu.seminar.entity.Invoice;
 import edu.sgu.seminar.entity.User;
 import edu.sgu.seminar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,14 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -32,6 +35,10 @@ public class UserController {
     }
     @RequestMapping(value = {"/register.html","/register"},method = RequestMethod.POST)
     public String register(Model model, @Valid User user, BindingResult result){
+
+        if(userService.findByEmail(user.getEmail())!=null){
+            result.addError(new FieldError("user", "email",user.getEmail(), false, null, null, "Email already exists"));
+        }
         if(result.hasErrors())
         {
             return "register";

@@ -6,82 +6,88 @@
     </th:block>
 </head>
 <body class="materialdesign">
-<div class="login-form-area mg-t-30 mg-b-15">
-    <div class="container-fluid">
-        <form action="#" th:action="@{/register.html}" th:object="${user}" method="post" id="adminpro-register-form" class="adminpro-form">
-            <div class="login-bg">
-                <div class="row justify-content-md-center">
-                    <div class="col-md-12">
-                        <div class="login-title">
-                            <h1>Registration Form</h1>
+<div class="container">
+    <div class="row ">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="login-form-area">
+                <form action="#" th:action="@{/register.html}" th:object="${user}" method="post" id="adminpro-register-form" class="adminpro-form">
+                    <div class="login-bg">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12">
+                                <div class="login-title">
+                                    <h1>Registration Form</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="login-input-head">
+                                    <p>Full name</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="login-input-area">
+                                    <input type="text" name="text" th:field="*{fullName}"/>
+                                    <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="badge badge-danger left"></span>
+                                    <i class="fa fa-pencil login-user" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="login-input-head">
+                                    <p>Email Address</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="login-input-area">
+                                    <input type="email" name="email" th:field="*{email}"/>
+                                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="badge badge-danger left"></span>
+                                    <i class="fa fa-envelope login-user" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="login-input-head">
+                                    <p>Password</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="login-input-area">
+                                    <input type="password" name="password" th:field="*{password}"/>
+                                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="badge badge-danger left"></span>
+                                    <i class="fa fa-lock login-user"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="login-input-head">
+                                    <p>Conform Password</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="login-input-area">
+                                    <input type="password" name="confarm_password">
+                                    <i class="fa fa-lock login-user"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-8">
+                                <div class="login-button-pro">
+                                    <button type="submit" class="login-button login-button-lg">Register</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="login-input-head">
-                            <p>full name</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="login-input-area">
-                            <input type="text" name="text" th:field="*{fullName}"/>
-                            <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="badge badge-danger left"></span>
-                            <i class="fa fa-pencil login-user" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="login-input-head">
-                            <p>Email Address</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="login-input-area">
-                            <input type="email" name="email" th:field="*{email}"/>
-                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="badge badge-danger left"></span>
-                            <i class="fa fa-envelope login-user" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="login-input-head">
-                            <p>Password</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="login-input-area">
-                            <input type="password" name="password" th:field="*{password}"/>
-                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="badge badge-danger left"></span>
-                            <i class="fa fa-lock login-user"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="login-input-head">
-                            <p>Conform Password</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="login-input-area">
-                            <input type="password" name="confarm_password">
-                            <i class="fa fa-lock login-user"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-6">
-                        <div class="login-button-pro">
-                            <button type="submit" class="login-button login-button-lg">Register</button>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
+        <div class="col-lg-2"></div>
     </div>
 </div>
 <th:block th:replace="/flagments/footer::footer"></th:block>

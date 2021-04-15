@@ -28,6 +28,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/**","/register").permitAll()
+//                .antMatchers("/invoice/**").authenticated()
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/accessdenied")

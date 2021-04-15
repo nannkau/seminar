@@ -9,4 +9,5 @@ public interface InvoiceService {
     Invoice addInvoice(InvoiceDTO invoiceDTO,String email);
     List<Invoice> getAll();
     Invoice findById(String id);
+    List<Invoice> getInvoiceByEmail(String email);
 }

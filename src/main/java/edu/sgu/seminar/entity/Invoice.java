@@ -15,6 +15,7 @@ public class Invoice {
     private String id;
     private Date createDate;
     private Integer priceTotal;
+    @DBRef
     private User user;
     private String address;
     private String phoneNumber;

@@ -11,49 +11,57 @@
 <div class="admin-dashone-data-table-area">
     <div class="data-table-area mg-b-15">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" style="margin-top: 50px;">
+                <form action="#" th:action="@{/invoice/add.html}" th:object="${invoiceDTO}" method="post">
                 <div class="col-lg-12">
                     <div class="sparkline13-list shadow-reset">
-                        <div class="sparkline13-hd">
-                            <div class="main-sparkline13-hd">
-                                <h1>Order<span class="table-project-n"></span> Table</h1>
-                            </div>
-                        </div>
-                        <form action="#" th:action="@{/invoice/add.html}" th:object="${invoiceDTO}" method="post">
-                            <div class="form-group-inner">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <label class="login2 pull-right pull-right-pro">Address</label>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="input-mark-inner mg-b-22">
-                                            <input type="text" id="name" th:field="*{address}" class="form-control" name="name" />
+                            <div class="row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-6">
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="login2 pull-right pull-right-pro">Address</label>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="input-mark-inner mg-b-22">
+                                                    <input type="text" id="name" th:field="*{address}" class="form-control" name="name" required="required"/>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group-inner">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <label class="login2 pull-right pull-right-pro">Phone</label>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="input-mark-inner mg-b-22">
-                                            <input type="text" id="address" th:field="*{phoneNumber}" class="form-control" name="address" />
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="login2 pull-right pull-right-pro">Phone</label>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="input-mark-inner mg-b-22">
+                                                    <input type="text" id="address" th:field="*{phoneNumber}" class="form-control" name="address" required="required" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group-inner">
-                                <div class="row justify-content-md-center">
-                                    <div class=" col col-lg-9">
-                                        <div class="login-horizental cancel-wp pull-left">
-                                            <button class="btn btn-sm btn-primary login-submit-cs" type="submit">Buy</button>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-5"></div>
+                                            <div class="col-lg-2">
+                                                <div class="login-horizental cancel-wp pull-left">
+                                                    <button class="btn btn-sm btn-primary login-submit-cs" type="submit">Buy</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5"></div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div>
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    <h1>Order<span class="table-project-n"></span> Table</h1>
+                                </div>
+                            </div>
                             <div class="form-group-inner">
                                 <div class="sparkline13-graph">
                                     <div class="datatable-dashv1-list custom-datatable-overright">
@@ -88,7 +96,7 @@
                                                 <td ><p th:text="${product.getPrice()+' $'}"></p></td>
                                                 <td th:text="${product.getGender()}">size</td>
                                                 <td th:text="${product.getSeason()}">Supplier</td>
-                                                <td> <input type="text" id="amountTotal" th:field="*{list[__${count.index}__].amount}" class="form-control" name="email" /></td>
+                                                <td> <input type="number" id="amountTotal" th:field="*{list[__${count.index}__].amount}" class="form-control" name="email" /></td>
 
                                             </tr>
                                             </tbody>
@@ -96,10 +104,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+
 
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>

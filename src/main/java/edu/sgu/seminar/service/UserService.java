@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserService {
     List<User> findAll();
     User findById(String id);
+    User findByEmail(String email);
     User save(User user);
     void delete(User user);
     void deleteById(String id);

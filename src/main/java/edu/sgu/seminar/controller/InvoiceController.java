@@ -5,6 +5,7 @@ import edu.sgu.seminar.dto.Item;
 import edu.sgu.seminar.dto.QrCodeProcessingResult;
 import edu.sgu.seminar.entity.Invoice;
 import edu.sgu.seminar.entity.Product;
+import edu.sgu.seminar.repository.InvoiceRepository;
 import edu.sgu.seminar.service.InvoiceService;
 import edu.sgu.seminar.service.ProductService;
 import edu.sgu.seminar.service.QrCodeEncoderService;
@@ -29,10 +30,13 @@ public class InvoiceController {
     @Autowired
     private QrCodeEncoderService qrCodeEncoderService;
     @RequestMapping(value = "/invoice/list.html")
-    public String list(Model model){
-      List<Invoice> list=  invoiceService.getAll();
-      model.addAttribute("list",list);
-      return "invoice";
+    public String list(Model model,Authentication authentication){
+        if (authentication!=null){
+            List<Invoice> invoices=invoiceService.getInvoiceByEmail(authentication.getName());
+            model.addAttribute("list",invoices);
+            return "invoice";
+        }
+        return "redirect:/login";
     }
     @RequestMapping(value = "/invoice/add.html")
     public String add(Model model){
@@ -56,10 +60,14 @@ public class InvoiceController {
         Integer count=0;
         for(Item item: invoiceDTO.getList()){
             if (item.getSelected()==true){
+                if (item.getAmount()==null)
+                {
+                    count=-1;
+                }
                 count++;
             }
         }
-        if (result.hasErrors()|| count==0) {
+        if (result.hasErrors()|| count<1) {
             List<Product> products= productService.getAll();
             model.addAttribute("products",products);
             return "cart";

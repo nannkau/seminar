@@ -14,18 +14,18 @@
        <div class="user-profile-img">
          <img src="img/notification/5.jpg" alt="">
        </div>
-       <div class="row justify-content-md-center">
-         <div class="col col-lg-12">
+       <div class="row ">
+         <div class="col-lg-12">
            <div class="user-profile-wrap shadow-reset">
-             <div class="row justify-content-md-center">
-               <div class="col col-lg-6">
-                 <div class="user-profile-img">
+             <div class="row">
+               <div class="col col-lg-4">
+                 <div class="img-thumbnail">
                    <div th:if="${result.getImage() != null}">
                      <img class="info" th:attr="src=@{${result.getImage()}}"/>
                    </div>
                  </div>
                </div>
-               <div class="col col-lg-10">
+               <div class="col col-lg-7">
                  <div class="user-profile-social-list">
                    <table class="table small m-b-xs">
                      <tbody>
@@ -33,28 +33,42 @@
                        <td>
                          <strong>Full Name</strong>
                        </td>
-                       <td th:text="${invoice.getUser().getFullName()}">
+                       <td colspan="3" th:text="${invoice.getUser().getFullName()}">
                        </td>
                      </tr>
                      <tr>
                        <td>
                          <strong>Address</strong>
                        </td>
-                       <td th:text="${invoice.address}">
+                       <td colspan="3" th:text="${invoice.address}">
                        </td>
                      </tr>
                      <tr>
                        <td>
                          <strong>Phone</strong>
                        </td>
-                       <td th:text="${invoice.getPhoneNumber()}">
+                       <td colspan="3" th:text="${invoice.getPhoneNumber()}">
                        </td>
                      </tr>
                      <tr>
-                       <td>
+                       <td colspan="4" class="col-lg-2">
+                         <strong>Product list</strong>
+                       </td>
+                     </tr>
+                     <tr th:each="item,count : ${invoice.getInvoiceDetails()}">
+                      <td th:text="${count.index}"></td>
+                       <td class="col-lg-4" th:text="${item.getProduct().getProductDisplayName()}">
+                       </td>
+                       <td class="col-lg-3" th:text="${item.getTotal()}">
+                       </td>
+                       <td class="col-lg-3" th:text="${item.getProduct().getPrice()+' $'}">
+                       </td>
+                     </tr>
+                     <tr>
+                       <td colspan="3">
                          <strong>Price</strong>
                        </td>
-                       <td th:text="${invoice.getPriceTotal()+ ' $'}">
+                       <td th:text="${invoice.getPriceTotal()+' $'}">
                        </td>
                      </tr>
                      </tbody>

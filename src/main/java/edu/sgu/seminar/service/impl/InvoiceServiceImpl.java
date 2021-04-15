@@ -59,4 +59,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     public Invoice findById(String id) {
         return invoiceRepository.findById(id).get();
     }
+
+    @Override
+    public List<Invoice> getInvoiceByEmail(String email) {
+        User user= userRepository.findByEmail(email);
+        return invoiceRepository.getInvoiceByUserId(user.getId());
+    }
 }
