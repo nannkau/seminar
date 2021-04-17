@@ -20,6 +20,7 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String fullName;
+    private String code;
     private String active;
     @DBRef
     private List<Role> roles;

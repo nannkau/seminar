@@ -51,6 +51,7 @@ public class SeminarApplication {
                 roles.add(roleRepository.findByCode("ADMIN"));
                 user.setRoles(roles);
                 user.setActive("0");
+                user.setCode("00000001");
                 user.setPassword(passwordEncoder.encode("123456"));
                 userRepository.save(user);
             }

@@ -13,17 +13,17 @@ public class ProductToString {
     public static String productToStringEmv(Invoice invoice){
         MerchantPresentedMode merchantPresentMode= new MerchantPresentedMode();
         merchantPresentMode.setAdditionalDataField(getAddtionalDataField(invoice));
-        merchantPresentMode.setMerchantCategoryCode("4111");
-        merchantPresentMode.setMerchantCity("BEIJING");
+        merchantPresentMode.setMerchantCategoryCode("5691");//ma nghanh hang
+        merchantPresentMode.setMerchantCity("Ho Chi Minh");//thanh pho
         merchantPresentMode.setMerchantInformationLanguage(merchantInformationLanguage);
-        merchantPresentMode.setMerchantName("BEST TRANSPORT");
+        merchantPresentMode.setMerchantName("my shop");//co the co chi nhanh
         merchantPresentMode.setPayloadFormatIndicator("01");
-        merchantPresentMode.setPointOfInitiationMethod("11");
+        merchantPresentMode.setPointOfInitiationMethod("12");//type 12 /11 static
         merchantPresentMode.setPostalCode("1234567");
-        merchantPresentMode.setTipOrConvenienceIndicator("01");
-        merchantPresentMode.setTransactionAmount("23.72");
-        merchantPresentMode.setTransactionCurrency("156");
-        merchantPresentMode.setValueOfConvenienceFeeFixed("500");
+        merchantPresentMode.setTipOrConvenienceIndicator("02");
+        merchantPresentMode.setTransactionAmount(invoice.getPriceTotal().toString());//price
+        merchantPresentMode.setTransactionCurrency("840");//
+        merchantPresentMode.setValueOfConvenienceFeeFixed("2");
         merchantPresentMode.setValueOfConvenienceFeePercentage("5");
         merchantPresentMode.addMerchantAccountInformation(merchanAccountInformationReserved);
         merchantPresentMode.addMerchantAccountInformation(merchanAccountInformationReservedAdditional);
@@ -34,7 +34,9 @@ public class ProductToString {
     private static MerchantAccountInformationTemplate getMerchanAccountInformationReserved() {
         final MerchantAccountInformationReserved merchantAccountInformationValue = new MerchantAccountInformationReserved("0004");
 
-        return new MerchantAccountInformationTemplate("02", merchantAccountInformationValue);
+        return new MerchantAccountInformationTemplate("02", merchantAccountInformationValue);//visa cap dinh danh
+        //vnpay 26
+        //napas 38
     }
 
     private static MerchantAccountInformationTemplate getMerchanAccountInformationReservedAdditional() {
@@ -72,9 +74,9 @@ public class ProductToString {
         rFUforEMVCo.setValue("abcd");
 
         final MerchantInformationLanguage merchantInformationLanguageValue = new MerchantInformationLanguage();
-        merchantInformationLanguageValue.setLanguagePreference("VI");
-        merchantInformationLanguageValue.setMerchantName("HN");
-        merchantInformationLanguageValue.setMerchantCity("HCMC");
+        merchantInformationLanguageValue.setLanguagePreference("vi");
+        merchantInformationLanguageValue.setMerchantName("vi");
+        merchantInformationLanguageValue.setMerchantCity("Ho Chi Minh");
         merchantInformationLanguageValue.addRFUforEMVCo(rFUforEMVCo);
 
         final MerchantInformationLanguageTemplate merchantInformationLanguage = new MerchantInformationLanguageTemplate();
@@ -94,8 +96,8 @@ public class ProductToString {
 
         final AdditionalDataField additionalDataFieldValue = new AdditionalDataField();
         additionalDataFieldValue.setAdditionalConsumerDataRequest("tuvxy");
-        additionalDataFieldValue.setBillNumber(invoice.getId());
-        additionalDataFieldValue.setCustomerLabel(invoice.getUser().getFullName());
+        additionalDataFieldValue.setBillNumber(invoice.getCode());
+        additionalDataFieldValue.setCustomerLabel(invoice.getUser().getCode());
         additionalDataFieldValue.setLoyaltyNumber("54321");
         additionalDataFieldValue.setMobileNumber(invoice.getPhoneNumber());
         additionalDataFieldValue.setPurposeTransaction("pqres");

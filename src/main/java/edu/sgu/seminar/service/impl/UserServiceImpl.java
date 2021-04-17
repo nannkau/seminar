@@ -5,6 +5,7 @@ import edu.sgu.seminar.entity.User;
 import edu.sgu.seminar.repository.RoleRepository;
 import edu.sgu.seminar.repository.UserRepository;
 import edu.sgu.seminar.service.UserService;
+import edu.sgu.seminar.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         List<Role> roles= new ArrayList<>();
         roles.add(roleRepository.findByCode("CUSTOMER"));
+        String code= RandomUtils.randomCode(10000000,99999999);
+        while (userRepository.getUserByCode(code)!=null){
+            code= RandomUtils.randomCode(10000000,99999999);
+        }
+        user.setCode(code);
         user.setRoles(roles);
         user.setActive("0");
         return userRepository.save(user);

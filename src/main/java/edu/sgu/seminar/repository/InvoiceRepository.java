@@ -11,4 +11,5 @@ import java.util.List;
 public interface InvoiceRepository extends MongoRepository<Invoice,String> {
     @Query(value="{ 'user.id' : ?0 }")
     List<Invoice> getInvoiceByUserId(String id);
+    Invoice getInvoiceByCode(String code);
 }

@@ -8,6 +8,7 @@ import edu.sgu.seminar.repository.InvoiceRepository;
 import edu.sgu.seminar.repository.ProductRepository;
 import edu.sgu.seminar.repository.UserRepository;
 import edu.sgu.seminar.service.InvoiceService;
+import edu.sgu.seminar.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     public Invoice addInvoice(InvoiceDTO invoiceDTO, String email) {
         User user=userRepository.findByEmail(email);
         Invoice invoice = new Invoice();
+        String code= RandomUtils.randomCode(10000000,99999999);
+        while (invoiceRepository.getInvoiceByCode(code)!=null){
+            code= RandomUtils.randomCode(10000000,99999999);
+        }
+        invoice.setCode(code);
         invoice.setCreateDate(new Date());
         invoice.setUser(user);
         invoice.setAddress(invoiceDTO.getAddress());
